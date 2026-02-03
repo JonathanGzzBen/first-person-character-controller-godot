@@ -10,3 +10,7 @@ A first person camera and player controller system in Godot.
 - Limited horizontal movement while falling.
 - Jump control.
 - Sprinting.
+
+## Screenshot
+
+![Engine and game running](readme-images/engine-and-game-running.png)
