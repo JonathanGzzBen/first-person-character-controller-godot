@@ -7,6 +7,8 @@ const JUMP_VELOCITY = 4.5
 const CAMERA_SENSITIVITY = 0.0025
 const BOB_FREQ = 2.0
 const BOB_AMP = 0.08
+const BASE_FOV = 75.0
+const FOV_CHANGE = 1.5
 
 var speed: float = WALK_SPEED
 var t_bob: float = 0.0
@@ -55,6 +57,10 @@ func _physics_process(delta: float) -> void:
 	# Head bob
 	t_bob += delta * velocity.length() * float(is_on_floor())
 	camera.transform.origin = _headbob(t_bob)
+	
+	# FOV
+	var target_fov = BASE_FOV + FOV_CHANGE * clamp(velocity.length(), 0.5, SPRINT_SPEED * 2.0)
+	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
 
 	move_and_slide()
 
